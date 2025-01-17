@@ -6,9 +6,9 @@ import { DataTable } from "@/components/table/DataTable";
 
 const AdminPage = async () => {
   const appointments = {
-    scheduledCount: 1,
-    pendingCount: 1,
-    cancelledCount: 1,
+    scheduledCount: 16,
+    pendingCount: 16,
+    cancelledCount: 16,
     documents: [
       {
         patient: {
