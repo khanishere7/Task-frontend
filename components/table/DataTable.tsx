@@ -50,48 +50,47 @@ export function DataTable<TData>({
     getPaginationRowModel: getPaginationRowModel(),
   });
 
-  return (
-    <div className="data-table">
-      <Table className="shad-table">
-        <TableHeader className=" bg-dark-200">
-          {table.getHeaderGroups().map((headerGroup) => (
-            <TableRow key={headerGroup.id} className="shad-table-row-header">
-              {headerGroup.headers.map((header) => (
-                <TableHead key={header.id}>
-                  {header.isPlaceholder
-                    ? null
-                    : flexRender(header.column.columnDef.header, header.getContext())}
-                </TableHead>
-              ))}
-            </TableRow>
-          ))}
-        </TableHeader>
-        <TableBody>
-  {table.getRowModel().rows?.length ? (
-    table.getRowModel().rows.map((row) => (
-      <TableRow
-        key={row.id}
-        data-state={row.getIsSelected() ? "selected" : undefined}
-        className="shad-table-row"
-      >
-        {row.getVisibleCells().map((cell) => (
-          <TableCell key={cell.id}>
-            {flexRender(cell.column.columnDef.cell, cell.getContext())}
-          </TableCell>
+return (
+  <div className="data-table">
+    <Table className="shad-table">
+      <TableHeader className="bg-dark-300">
+        {table.getHeaderGroups().map((headerGroup) => (
+          <TableRow key={headerGroup.id} className="shad-table-row-header">
+            {headerGroup.headers.map((header) => (
+              <TableHead key={header.id} className={header.id === '' ? 'text-right' : ''}>
+                {header.isPlaceholder
+                  ? null
+                  : flexRender(header.column.columnDef.header, header.getContext())}
+              </TableHead>
+            ))}
+          </TableRow>
         ))}
-        
-        <TableCell>
-          <div className="flex gap-2">
-            <Button variant="default" size="sm">
-              Schedule
-            </Button>
-            <Button variant="destructive" size="sm">
-              Cancel
-            </Button>
-          </div>
-        </TableCell>
-      </TableRow>
-    ))
+      </TableHeader>
+      <TableBody>
+        {table.getRowModel().rows?.length ? (
+          table.getRowModel().rows.map((row) => (
+            <TableRow
+              key={row.id}
+              data-state={row.getIsSelected() ? "selected" : undefined}
+              className="shad-table-row"
+            >
+              {row.getVisibleCells().map((cell) => (
+                <TableCell key={cell.id}>
+                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                </TableCell>
+              ))}
+              <TableCell className="text-right">
+                <div className="flex gap-2 justify-end">
+                  <Button variant="default" size="sm">
+                    Schedule
+                  </Button>
+                  <Button variant="destructive" size="sm">
+                    Cancel
+                  </Button>
+                </div>
+              </TableCell>
+            </TableRow>
+          ))
   ) : (
     <TableRow>
       <TableCell colSpan={columns.length + 1} className="h-24 text-center">
@@ -102,7 +101,7 @@ export function DataTable<TData>({
 </TableBody>
 
       </Table>
-      <div className="table-actions">
+      <div className="">
         <Button
           variant="outline"
           size="sm"
